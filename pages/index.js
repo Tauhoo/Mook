@@ -1,0 +1,5 @@
+export default ()=>(
+  <div>
+    <h1>Set up</h1>
+  </div>
+)
