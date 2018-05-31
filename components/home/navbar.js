@@ -2,6 +2,8 @@ import styled from 'styled-components'
 const Container = styled.div`
   width: 100vw;
   position: fixed;
+  top: 0px;
+  left: 0px;
 `
 const Menu = styled.div`
   display: inline-block;
