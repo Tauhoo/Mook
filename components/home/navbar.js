@@ -18,12 +18,14 @@ const Topic = styled.div`
   font-size: 1.8rem;
   text-align: center;
   margin-left: 20px;
+  color: #2d3436;
 `
 const MenuButton = styled.span`
   text-align: center;
   padding: 10px;
   font-family: 'Kanit';
   font-size: 1.8rem;
+  color: #2d3436;
 `
 export default ()=>(
   <Container>
