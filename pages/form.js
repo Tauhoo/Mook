@@ -4,6 +4,7 @@ import Navbar from '../components/form/navbar'
 import Topic from '../components/form/topic'
 import Name from '../components/form/name'
 import Tag from '../components/form/tag'
+import TextField from '../components/form/textField'
 export default ()=>(
   <div>
     <Head>
@@ -18,6 +19,8 @@ export default ()=>(
           margin: 0px;
           padding: 0px;
           overflow-x: hidden;
+          width: 100vw;
+          height: 100vh;
         }
         html {
           font-size: 62.5%;
@@ -29,6 +32,7 @@ export default ()=>(
       <Topic/>
       <Name/>
       <Tag/>
+      <TextField/>
     </body>
   </div>
 )
