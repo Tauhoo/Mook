@@ -8,6 +8,6 @@ const Container = styled.div`
 `
 export default ()=>(
   <Container>
-    <span>สร้างมุกไหม</span>
+    <span>สร้างมุขใหม่</span>
   </Container>
 )

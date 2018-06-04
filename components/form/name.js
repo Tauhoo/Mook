@@ -14,7 +14,7 @@ const Input = styled.input`
   border-radius: 10px;
   padding: 0px 10px 0px 10px;
   outline: none;
-  background-color: #bdc3c7;
+  background-color: #dcdde1;
 `
 export default ()=>(
   <Container>

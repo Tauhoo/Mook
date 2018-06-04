@@ -22,7 +22,7 @@ const SearchInput = styled.input`
   border: none;
   display: inline-block;
   border-radius: 10px;
-  background-color: #bdc3c7;
+  background-color: #dcdde1;
   font-family: 'Kanit';
 `
 const CategoryInput = styled.select`
@@ -33,7 +33,7 @@ const CategoryInput = styled.select`
   border: none;
   display: inline-block;
   border-radius: 10px;
-  background-color: #bdc3c7;
+  background-color: #dcdde1;
   color: #2d3436;
   font-family: 'Kanit';
 `

@@ -1,6 +1,5 @@
 import styled from 'styled-components'
 const TextField = styled.textarea`
-  height: 100%;
   width: calc(100% - 20px);
   padding: 10px;
   outline: none;
@@ -10,7 +9,10 @@ const TextField = styled.textarea`
   background-color: #dcdde1;
   resize: vertical;
   height: 30vh;
-  #2d3436
+  color: #2d3436;
+  @media (max-width: 700px) {
+    height: 38vh;
+  }
 `
 const Container = styled.div`
   width: calc(80vw + 20px);

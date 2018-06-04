@@ -5,6 +5,7 @@ import Topic from '../components/form/topic'
 import Name from '../components/form/name'
 import Tag from '../components/form/tag'
 import TextField from '../components/form/textField'
+import Submit from '../components/form/submit'
 export default ()=>(
   <div>
     <Head>
@@ -33,6 +34,7 @@ export default ()=>(
       <Name/>
       <Tag/>
       <TextField/>
+      <Submit/>
     </body>
   </div>
 )
