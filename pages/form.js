@@ -1,8 +1,9 @@
 import Head  from 'next/head'
 import styled from 'styled-components'
-import Navbar from '../components/home/navbar'
-import Search from '../components/home/search'
-import Background from '../components/home/background'
+import Navbar from '../components/form/navbar'
+import Topic from '../components/form/topic'
+import Name from '../components/form/name'
+import Tag from '../components/form/tag'
 export default ()=>(
   <div>
     <Head>
@@ -25,8 +26,9 @@ export default ()=>(
     </style>
     <body>
       <Navbar/>
-      <Search/>
-      <Background/>
+      <Topic/>
+      <Name/>
+      <Tag/>
     </body>
   </div>
 )
