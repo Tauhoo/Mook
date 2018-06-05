@@ -1,9 +1,9 @@
-import Head from 'next/head'
+import Head  from 'next/head'
 import styled from 'styled-components'
-import Top from '../components/result/top'
-import Navbar from '../components/result/navbar'
-import Result from '../components/result/result'
-import Bottom from '../components/result/bottom'
+import Navbar from '../components/mook/navbar'
+import Topic from '../components/mook/topic'
+import MookField from '../components/mook/mookField'
+import Review from '../components/mook/review'
 export default ()=>(
   <div>
     <Head>
@@ -17,9 +17,9 @@ export default ()=>(
         body {
           margin: 0px;
           padding: 0px;
-          background-color: #ecf0f1;
           overflow-x: hidden;
           width: 100vw;
+          height: 100vh;
         }
         html {
           font-size: 62.5%;
@@ -28,9 +28,9 @@ export default ()=>(
     </style>
     <body>
       <Navbar/>
-      <Top/>
-      <Result/>
-      <Bottom/>
+      <Topic/>
+      <MookField/>
+      <Review/>
     </body>
   </div>
 )
