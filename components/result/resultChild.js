@@ -90,7 +90,7 @@ export default ()=>(
               top: '46%',
               transform: 'translateY(-50%)',
             }}
-            class="material-icons">
+            className="material-icons">
             thumb_up
           </span>
         </LikeIcon>
@@ -104,7 +104,7 @@ export default ()=>(
               top: '46%',
               transform: 'translateY(-50%)',
             }}
-            class="material-icons">
+            className="material-icons">
             comment
           </span>
         </CommentIcon>

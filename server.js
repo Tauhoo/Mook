@@ -4,7 +4,7 @@ const next = require('next')
 const dev = process.env.NODE_ENV !== 'production'
 const app = next({ dev })
 const handle = app.getRequestHandler()
-const readUrl = require('./api/server/readUrl')
+const db = require('./database/db.js')
 
 var axios = require('axios');
 var path = require('path')
@@ -17,6 +17,10 @@ var certOptions = {
 
 const homeMiddleware = require('./server/home/middleware');
 const homeHandle = require('./server/home/handle');
+db.connect().then((resolve)=>{
+  console.log('connect!!!');
+  resolve.db.close()
+});
 
 app.prepare().then(() => {
   const server = express()
