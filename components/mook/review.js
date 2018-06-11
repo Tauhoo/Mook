@@ -27,7 +27,7 @@ export default ()=>(
       <Like>
         <LikeNumber>10000</LikeNumber>
         <LikeIcon>
-          <span style={{position: 'relative', top: '15px', transform: 'translateY(-50%)'}}class="material-icons">
+          <span style={{position: 'relative', top: '15px', transform: 'translateY(-50%)'}} className="material-icons">
             thumb_up
           </span>
         </LikeIcon>
