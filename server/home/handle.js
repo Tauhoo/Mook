@@ -10,8 +10,10 @@ async function LoginFacebook(req, res){
     return response.data;
   })
 
-  console.log(data);
   console.log(userData);
+  await this.db.insert('user',{code: code, ...userData}).then(function (resolve) {
+    resolve.db.close()
+  });
 
   return this.app.render(req, res, '/')
 }
