@@ -17,15 +17,10 @@ var certOptions = {
 
 const homeMiddleware = require('./server/home/middleware');
 const homeHandle = require('./server/home/handle');
-db.connect().then((resolve)=>{
-  console.log('connect!!!');
-  resolve.db.close()
-});
-
 app.prepare().then(() => {
   const server = express()
   server.use('/',homeMiddleware.checkIsNormal.bind(app))
-  server.get('/', homeHandle.LoginFacebook.bind({axios : axios, app: app}))
+  server.get('/', homeHandle.LoginFacebook.bind({axios : axios, app: app, db: db}))
   server.get('*', (req, res) => { handle(req, res) })
   https.createServer(certOptions, server).listen(3000)
 })
