@@ -4,7 +4,9 @@ import Navbar from '../components/mook/navbar'
 import Topic from '../components/mook/topic'
 import MookField from '../components/mook/mookField'
 import Review from '../components/mook/review'
-export default ()=>(
+import Page from '../components/page.js'
+import { connect } from 'react-redux'
+const page = ()=>(
   <div>
     <Head>
       <title>Mook</title>
@@ -34,3 +36,5 @@ export default ()=>(
     </body>
   </div>
 )
+
+export default Page(connect(state=>state)(page));

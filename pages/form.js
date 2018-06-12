@@ -6,7 +6,9 @@ import Name from '../components/form/name'
 import Tag from '../components/form/tag'
 import TextField from '../components/form/textField'
 import Submit from '../components/form/submit'
-export default ()=>(
+import Page from '../components/page.js'
+import { connect } from 'react-redux'
+const page = ()=>(
   <div>
     <Head>
       <title>Mook</title>
@@ -38,3 +40,5 @@ export default ()=>(
     </body>
   </div>
 )
+
+export default Page(connect(state=>state)(page));

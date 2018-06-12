@@ -4,7 +4,9 @@ import styled from 'styled-components'
 import Navbar from '../components/home/navbar'
 import Search from '../components/home/search'
 import Background from '../components/home/background'
-export default class extends Component {
+import Page from '../components/page.js'
+import { connect } from 'react-redux'
+class page extends Component {
   constructor(props){
     super(props)
   }
@@ -39,3 +41,5 @@ export default class extends Component {
       </div>
     )}
 }
+
+export default Page(connect(state=>state)(page));

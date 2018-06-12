@@ -4,7 +4,9 @@ import Top from '../components/result/top'
 import Navbar from '../components/result/navbar'
 import Result from '../components/result/result'
 import Bottom from '../components/result/bottom'
-export default ()=>(
+import Page from '../components/page.js'
+import { connect } from 'react-redux'
+const page = ()=>(
   <div>
     <Head>
       <title>Mook</title>
@@ -34,3 +36,4 @@ export default ()=>(
     </body>
   </div>
 )
+export default Page(connect(state=>state)(page));

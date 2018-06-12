@@ -62,7 +62,7 @@ export default ()=>(
     </InputContainer>
     <ButtonContainer>
       <ModeButton style={{textAlign : 'center'}}>
-        <i class="material-icons">cached</i>
+        <i className="material-icons">cached</i>
       </ModeButton>
     </ButtonContainer>
   </Container>
