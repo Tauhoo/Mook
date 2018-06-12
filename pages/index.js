@@ -5,24 +5,18 @@ import Navbar from '../components/home/navbar'
 import Search from '../components/home/search'
 import Background from '../components/home/background'
 import Page from '../components/page.js'
+import $ from "jquery";
 import { connect } from 'react-redux'
-import API from 'fetch-ai'
 class page extends Component {
   constructor(props){
     super(props)
   }
-  componentDidMount(){
+  async componentDidMount(){
     var url = new URL(window.location.href);
     var code = url.searchParams.get("code");
-    if(code === undefined) return;
-
-    let api = new API({
-      baseURI: 'https://localhost:3000'
-    });
-    api.post('/login',{
-      code: code
-    },(err, res, body)=>{
-      console.log(body)
+    if(code === null) return;
+    $.post('https://localhost:3000/login',{code: code},function (data) {
+      console.log('ice: : : ;'+data.name)
     })
   }
   render(){

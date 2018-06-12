@@ -1,4 +1,5 @@
 const express = require('express')
+const bodyParser = require('body-parser')
 const next = require('next')
 
 const dev = process.env.NODE_ENV !== 'production'
@@ -19,10 +20,15 @@ const homeMiddleware = require('./server/home/middleware');
 const homeHandle = require('./server/home/handle');
 app.prepare().then(() => {
   const server = express()
+  server.use( bodyParser.json() );       // to support JSON-encoded bodies
+  server.use(bodyParser.urlencoded({     // to support URL-encoded bodies
+    extended: true
+  }));
   //normal access
-  server.use('/',homeMiddleware.checkIsNormal.bind(app))
+  //server.use('/',homeMiddleware.checkIsNormal.bind(app))
   //Login
   server.get('/', homeHandle.LoginFacebook.bind({axios : axios, app: app, db: db}))
+  server.post('/login',homeHandle.Login.bind({ db: db}))
   server.get('*', (req, res) => { handle(req, res) })
   https.createServer(certOptions, server).listen(3000)
 })
