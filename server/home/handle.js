@@ -17,5 +17,4 @@ async function LoginFacebook(req, res){
 
   return this.app.render(req, res, '/')
 }
-
 module.exports = { LoginFacebook : LoginFacebook }
