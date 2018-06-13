@@ -16,7 +16,7 @@ class page extends Component {
     var code = url.searchParams.get("code");
     if(code === null) return;
     $.post('https://localhost:3000/login',{code: code},function (data) {
-      console.log('ice: : : ;'+data.name)
+      console.log(data)
     })
   }
   render(){

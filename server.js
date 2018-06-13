@@ -16,7 +16,6 @@ var certOptions = {
   cert: fs.readFileSync(path.resolve('./CT/server.cer'))
 }
 
-const homeMiddleware = require('./server/home/middleware');
 const homeHandle = require('./server/home/handle');
 app.prepare().then(() => {
   const server = express()

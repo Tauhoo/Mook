@@ -33,4 +33,15 @@ mongodb.prototype.find = function (col, query) {
     }.bind(con));
   }.bind(this))
 }
+
+mongodb.prototype.update = function (col, query, newValue) {
+  return new Promise(async function (resolve, reject) {
+    var con = await this.connect().then(resolve => resolve)
+    con.db.db('mook').collection(col).updateOne(query, {$set: newValue},function (err, res) {
+      if (err) throw err;
+      console.log("find!!!!");
+      return resolve({db:this.db, res: res})
+    }.bind(con))
+  }.bind(this))
+}
 module.exports = new mongodb();
