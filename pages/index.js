@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import Head  from 'next/head'
 import styled from 'styled-components'
-import Navbar from '../components/home/navbar'
+import Navbar from '../components/navbar'
 import Search from '../components/home/search'
 import Background from '../components/home/background'
 import Page from '../components/page.js'
@@ -17,7 +17,9 @@ class page extends Component {
     if(code === null) return;
     $.post('https://localhost:3000/login',{code: code},function (data) {
       console.log(data)
-    })
+      this.props.login()
+      console.log(this.props);
+    }.bind(this))
   }
   render(){
     return (
@@ -48,5 +50,20 @@ class page extends Component {
       </div>
     )}
 }
+const mapStateToProps = state => {
+  return {
+    state : state.online
+  }
+}
 
-export default Page(connect(state=>state)(page));
+const mapDispatchToProps = dispatch => {
+  return {
+    login : () => dispatch({ type: 'LOGIN' })
+  }
+}
+
+
+export default Page(connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(page));
