@@ -12,13 +12,20 @@ class page extends Component {
     super(props)
   }
   async componentDidMount(){
+    if(localStorage.getItem('MookUserData') !== null){
+      this.props.login()
+      return
+    }
     var url = new URL(window.location.href);
     var code = url.searchParams.get("code");
     if(code === null) return;
     $.post('https://localhost:3000/login',{code: code},function (data) {
-      console.log(data)
+      localStorage.setItem('MookUserData',JSON.stringify({
+        'name': data.name,
+        'picture': data.picture,
+        'id': data.id
+      }));
       this.props.login()
-      console.log(this.props);
     }.bind(this))
   }
   render(){
