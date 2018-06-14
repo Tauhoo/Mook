@@ -1,11 +1,9 @@
 export default function reducer(state = {}, action) {
-  console.log(state)
-  console.log(action);;
   switch (action.type){
     case 'LOGIN' :
-      return Object.assign({online: true}, state)
+      return Object.assign({},state,{online: true})
     case 'LOGOUT' :
-      return Object.assign({online: false}, state)
+      return Object.assign({},state,{online: false})
     default:
       return state
   }

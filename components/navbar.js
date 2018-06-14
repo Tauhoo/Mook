@@ -57,15 +57,21 @@ class page extends Component {
   constructor(props){
     super(props)
     this.state = nullProfile
+    this.logout = this.logout.bind(this)
   }
 
   componentDidMount(){
     if(localStorage.getItem('MookUserData') !== null){
       this.setState(JSON.parse(localStorage.getItem('MookUserData')),function () {
-        console.log('ooo');
         this.props.login()
       }.bind(this))
     }
+  }
+
+  logout(){
+    localStorage.removeItem('MookUserData')
+    this.props.logout()
+    this.setState(nullProfile)
   }
 
   render(){
@@ -77,13 +83,7 @@ class page extends Component {
         <Picture url={this.state.picture.data.url} display={this.props.isOnline}/>
         <Menu display={this.props.isOnline}>
           <MenuButton>Create</MenuButton>
-          <MenuButton onClick={
-            function (){
-              localStorage.removeItem('MookUserData')
-              this.props.logout()
-              this.setState(nullProfile)
-            }.bind(this)
-          }>Logout</MenuButton>
+          <MenuButton onClick={this.logout}>Logout</MenuButton>
           <Text>{this.state.name}</Text>
         </Menu>
         <Menu display={!this.props.isOnline}>
