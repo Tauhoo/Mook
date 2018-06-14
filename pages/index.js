@@ -13,7 +13,6 @@ class page extends Component {
   }
   async componentDidMount(){
     if(localStorage.getItem('MookUserData') !== null){
-      this.props.login()
       return
     }
     var url = new URL(window.location.href);

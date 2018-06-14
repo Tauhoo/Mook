@@ -1,6 +1,6 @@
 import Head  from 'next/head'
 import styled from 'styled-components'
-import Navbar from '../components/mook/navbar'
+import Navbar from '../components/navbar'
 import Topic from '../components/mook/topic'
 import MookField from '../components/mook/mookField'
 import Review from '../components/mook/review'
