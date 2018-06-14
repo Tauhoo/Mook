@@ -67,6 +67,12 @@ class page extends Component {
       }.bind(this))
     }
   }
+  componentWillReceiveProps(nextProps){
+    if (!nextProps.isOnline) return
+    this.setState(JSON.parse(localStorage.getItem('MookUserData')),function () {
+      this.props.login()
+    }.bind(this))
+  }
 
   logout(){
     localStorage.removeItem('MookUserData')
@@ -78,17 +84,17 @@ class page extends Component {
     return (
       <Container>
         <Topic>
-          <span>Mook</span>
+          <span><Link href={'/'}>Mook</Link></span>
         </Topic>
         <Picture url={this.state.picture.data.url} display={this.props.isOnline}/>
         <Menu display={this.props.isOnline}>
-          <MenuButton>Create</MenuButton>
+          <MenuButton><Link href={'/form'}>Create</Link></MenuButton>
           <MenuButton onClick={this.logout}>Logout</MenuButton>
           <Text>{this.state.name}</Text>
         </Menu>
         <Menu display={!this.props.isOnline}>
           <MenuButton><Link
-          href={'https://www.facebook.com/v3.0/dialog/oauth?client_id=2106226559621691&redirect_uri=https://localhost:3000/&state={"{st=state123abc,ds=123456789}"}'}>
+          href={'https://www.facebook.com/v3.0/dialog/oauth?client_id=2106226559621691&redirect_uri=https://localhost:3000/'}>
           Login</Link>
           </MenuButton>
         </Menu>

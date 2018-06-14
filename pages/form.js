@@ -1,6 +1,6 @@
 import Head  from 'next/head'
 import styled from 'styled-components'
-import Navbar from '../components/form/navbar'
+import Navbar from '../components/navbar'
 import Topic from '../components/form/topic'
 import Name from '../components/form/name'
 import Tag from '../components/form/tag'
