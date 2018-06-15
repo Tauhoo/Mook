@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-
+import React,{ Component } from 'react'
 const Container = styled.div`
   width: 70vw;
 `
@@ -12,7 +12,8 @@ const InputContainer = styled.div`
 const Input = styled.div`
   position: relative;
   width: 200%;
-  left: 0px;
+  left: ${(props)=> props.type == 'SELECT' ? '0px' : '-100%'};
+  transition-duration: 0.6s; 
 `
 const SearchInput = styled.input`
   width: calc(50% - 12px);
@@ -50,20 +51,37 @@ const ModeButton = styled.button`
   background-color: #2d3436;
   color: white;
 `
-export default ()=>(
-  <Container>
-    <InputContainer>
-      <Input>
-        <CategoryInput>
-          <option>Q&A</option>
-        </CategoryInput>
-        <SearchInput/>
-      </Input>
-    </InputContainer>
-    <ButtonContainer>
-      <ModeButton style={{textAlign : 'center'}}>
-        <i className="material-icons">cached</i>
-      </ModeButton>
-    </ButtonContainer>
-  </Container>
-)
+export default class extends Component{
+  constructor(props){
+    super(props)
+    this.state = {
+      inputType: 'SELECT'
+    }
+  }
+  change = ()=>{
+    if(this.state.inputType === 'SELECT'){
+      this.setState({inputType: 'SEARCH'})
+    }else{
+      this.setState({inputType: 'SELECT'})
+    }
+  }
+  render(){
+    return(
+      <Container>
+        <InputContainer>
+          <Input type={this.state.inputType}>
+            <CategoryInput>
+              <option>Q&A</option>
+            </CategoryInput>
+            <SearchInput/>
+          </Input>
+        </InputContainer>
+        <ButtonContainer>
+          <ModeButton onClick={this.change} style={{textAlign : 'center'}}>
+            <i className="material-icons">cached</i>
+          </ModeButton>
+        </ButtonContainer>
+      </Container>
+    )
+  }
+}
