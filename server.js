@@ -28,6 +28,7 @@ app.prepare().then(() => {
   //Login
   server.get('/', homeHandle.LoginFacebook.bind({axios : axios, app: app, db: db}))
   server.post('/login',homeHandle.Login.bind({ db: db}))
+  server.post('/login-token',homeHandle.TokenLogin)
   server.get('*', (req, res) => { handle(req, res) })
   https.createServer(certOptions, server).listen(3000)
 })

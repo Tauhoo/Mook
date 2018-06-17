@@ -5,27 +5,33 @@ import Navbar from '../components/navbar'
 import Search from '../components/home/search'
 import Background from '../components/home/background'
 import Page from '../components/page.js'
+import { LOGIN } from '../redux/action/action'
 import $ from "jquery";
 import { connect } from 'react-redux'
 class page extends Component {
   constructor(props){
     super(props)
   }
+
   async componentDidMount(){
-    if(localStorage.getItem('MookUserData') !== null){
+    if(localStorage.getItem('MookUserToken') !== null){
+      $.post('https://localhost:3000/login-token',{token: localStorage.getItem('MookUserToken')},data => {
+        this.props.login(data)
+        console.log(this.props.data);
+      })
       return
     }
     var url = new URL(window.location.href);
     var code = url.searchParams.get("code");
     if(code === null) return;
-    $.post('https://localhost:3000/login',{code: code},function (data) {
-      localStorage.setItem('MookUserData',JSON.stringify({
+    $.post('https://localhost:3000/login',{code: code},data => {
+      localStorage.setItem('MookUserToken', data.token);
+      this.props.login({
         'name': data.name,
         'picture': data.picture,
         'id': data.id
-      }));
-      this.props.login()
-    }.bind(this))
+      })
+    })
   }
   render(){
     return (
@@ -58,13 +64,14 @@ class page extends Component {
 }
 const mapStateToProps = state => {
   return {
-    state : state.online
+    state : state.online,
+    data: state.data,
   }
 }
 
 const mapDispatchToProps = dispatch => {
   return {
-    login : () => dispatch({ type: 'LOGIN' })
+    login : (payload) => dispatch(LOGIN(payload)),
   }
 }
 

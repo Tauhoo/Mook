@@ -11,6 +11,7 @@ async function LoginFacebook(req, res){
   });
 
   if(data === 'ERROR'){
+    console.log('ERROR');
     res.redirect('/');
     return
   }
@@ -39,7 +40,6 @@ async function LoginFacebook(req, res){
 }
 
 async function Login(req, res) {
-  console.log('USER');
   const user = await this.db.find('user',{code: req.body.code}).then(function (resolve) {
     resolve.db.close()
     return resolve.result
@@ -48,9 +48,31 @@ async function Login(req, res) {
     res.send({err:'NO_USER'});
     return
   }
-  res.send(user);
+  const genToken = require('../genToken.js');
+  res.send({
+    name: user.name,
+    picture: user.picture,
+    token: genToken({id: user.id}),
+  });
   await this.db.update('user', {code: req.body.code}, {code: ''}).then(function (resolve) {
     resolve.db.close()
   })
 }
-module.exports = { LoginFacebook : LoginFacebook ,Login : Login}
+async function TokenLogin(req,res) {
+  console.log('iiiiiiiiiiiiiiiiiiicccccccccccccccccccccceeeeeeeeeeeeeeeeeeeee');
+  res.send({
+    	id : "910408919167971",
+    	name : "วชิรวิทย์ เวชรักษ์",
+    	picture : {
+    		data : {
+    			height : 50,
+    			is_silhouette : false,
+    			url : "https://platform-lookaside.fbsbx.com/platform/profilepic/?asid=910408919167971&height=50&width=50&ext=1529398971&hash=AeR7nVgKgpGvphEb",
+    			width : 50
+    		}
+    	}
+    }
+  );
+}
+
+module.exports = { LoginFacebook, Login, TokenLogin}

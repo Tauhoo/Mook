@@ -1,6 +1,5 @@
-export const login = {
-  type: 'LOGIN'
-}
-export const logout = {
+export const LOGOUT = {
   type: 'LOGOUT'
 }
+
+export var LOGIN = (payload) => ({type: 'LOGIN',payload})

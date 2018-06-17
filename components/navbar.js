@@ -49,31 +49,12 @@ const Picture = styled.div`
   display: ${(props) => props.display ? 'inline-block' : 'none'};
   float: right;
 `
-const nullProfile = {
-  name: '',
-  picture: { data: {url: ''}}
-}
 class page extends Component {
   constructor(props){
     super(props)
-    this.state = nullProfile
     this.logout = this.logout.bind(this)
   }
-
-  componentDidMount(){
-    if(localStorage.getItem('MookUserData') !== null){
-      this.setState(JSON.parse(localStorage.getItem('MookUserData')),function () {
-        this.props.login()
-      }.bind(this))
-    }
-  }
-  componentWillReceiveProps(nextProps){
-    if (!nextProps.isOnline) return
-    this.setState(JSON.parse(localStorage.getItem('MookUserData')),function () {
-      this.props.login()
-    }.bind(this))
-  }
-
+  
   logout(){
     localStorage.removeItem('MookUserData')
     this.props.logout()
@@ -86,16 +67,17 @@ class page extends Component {
         <Topic>
           <span><Link href={'/'}>Mook</Link></span>
         </Topic>
-        <Picture url={this.state.picture.data.url} display={this.props.isOnline}/>
+        <Picture url={this.props.isOnline ? this.props.data.picture.data.url : ""} display={this.props.isOnline}/>
         <Menu display={this.props.isOnline}>
-          <MenuButton><Link href={'/form'}>Create</Link></MenuButton>
+          <MenuButton><Link href={'/form'}><a>Create</a></Link></MenuButton>
           <MenuButton onClick={this.logout}>Logout</MenuButton>
-          <Text>{this.state.name}</Text>
+          <Text>{this.props.isOnline ? this.props.data.name : ""}</Text>
         </Menu>
         <Menu display={!this.props.isOnline}>
           <MenuButton><Link
           href={'https://www.facebook.com/v3.0/dialog/oauth?client_id=2106226559621691&redirect_uri=https://localhost:3000/'}>
-          Login</Link>
+            <a>Login</a>
+          </Link>
           </MenuButton>
         </Menu>
       </Container>
@@ -104,7 +86,8 @@ class page extends Component {
 }
 const mapStateToProps = (state)=>{
   return {
-    isOnline: state.online
+    isOnline: state.online,
+    data: state.data
   }
 }
 

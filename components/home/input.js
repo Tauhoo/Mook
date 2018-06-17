@@ -13,18 +13,19 @@ const Input = styled.div`
   position: relative;
   width: 200%;
   left: ${(props)=> props.type == 'SELECT' ? '0px' : '-100%'};
-  transition-duration: 0.6s; 
+  transition-duration: 0.6s;
 `
 const SearchInput = styled.input`
   width: calc(50% - 12px);
   font-size: 2rem;
   padding: 6px;
   outline: none;
-  border: none;
   display: inline-block;
   border-radius: 10px;
   background-color: #dcdde1;
   font-family: 'Kanit';
+  border: none;
+
 `
 const CategoryInput = styled.select`
   width: calc(50%);
