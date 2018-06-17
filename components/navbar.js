@@ -54,9 +54,9 @@ class page extends Component {
     super(props)
     this.logout = this.logout.bind(this)
   }
-  
+
   logout(){
-    localStorage.removeItem('MookUserData')
+    localStorage.removeItem('MookUserToken')
     this.props.logout()
     this.setState(nullProfile)
   }

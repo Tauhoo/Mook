@@ -26,9 +26,9 @@ app.prepare().then(() => {
   //normal access
   //server.use('/',homeMiddleware.checkIsNormal.bind(app))
   //Login
-  server.get('/', homeHandle.LoginFacebook.bind({axios : axios, app: app, db: db}))
-  server.post('/login',homeHandle.Login.bind({ db: db}))
-  server.post('/login-token',homeHandle.TokenLogin)
+  server.get('/', homeHandle.LoginFacebook.bind({axios, app, db}))
+  server.post('/login',homeHandle.Login.bind({db}))
+  server.post('/login-token',homeHandle.TokenLogin.bind({db}))
   server.get('*', (req, res) => { handle(req, res) })
   https.createServer(certOptions, server).listen(3000)
 })

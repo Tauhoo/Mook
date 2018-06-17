@@ -59,18 +59,16 @@ async function Login(req, res) {
   })
 }
 async function TokenLogin(req,res) {
-  console.log('iiiiiiiiiiiiiiiiiiicccccccccccccccccccccceeeeeeeeeeeeeeeeeeeee');
+  const verifyToken = require('../verifyToken.js');
+  const tokenData = verifyToken(req.body.token)
+  const data = await this.db.find('user',{id: tokenData.id}).then(function (resolve) {
+    return resolve.result
+    resolve.db.close()
+  });
   res.send({
-    	id : "910408919167971",
-    	name : "วชิรวิทย์ เวชรักษ์",
-    	picture : {
-    		data : {
-    			height : 50,
-    			is_silhouette : false,
-    			url : "https://platform-lookaside.fbsbx.com/platform/profilepic/?asid=910408919167971&height=50&width=50&ext=1529398971&hash=AeR7nVgKgpGvphEb",
-    			width : 50
-    		}
-    	}
+    	id : data.id,
+    	name : data.name,
+    	picture : data.picture,
     }
   );
 }
