@@ -1,4 +1,7 @@
+import React, {Component} from 'react'
 import styled from 'styled-components'
+import {connect} from 'react-redux'
+
 const Container = styled.div`
   margin-top: 20px;
   width: 100vw;
@@ -16,8 +19,15 @@ const Input = styled.input`
   outline: none;
   background-color: #dcdde1;
 `
-export default ()=>(
-  <Container>
-    <Input placeholder='ชื่อมุข' />
-  </Container>
-)
+
+class name extends Component {
+ render(){
+   return (
+     <Container>
+       <Input placeholder='ชื่อมุข' />
+     </Container>
+   )
+ }
+}
+
+export default name

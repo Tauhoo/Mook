@@ -61,6 +61,10 @@ async function Login(req, res) {
 async function TokenLogin(req,res) {
   const verifyToken = require('../verifyToken.js');
   const tokenData = verifyToken(req.body.token)
+  if(tokenData == 'ERROR'){
+    res.send({err: 'ERROR'});
+    return
+  }
   const data = await this.db.find('user',{id: tokenData.id}).then(function (resolve) {
     return resolve.result
     resolve.db.close()

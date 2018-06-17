@@ -2,4 +2,13 @@ export const LOGOUT = {
   type: 'LOGOUT'
 }
 
-export var LOGIN = (payload) => ({type: 'LOGIN',payload})
+export const LOGIN = (payload) => ({
+  type: 'LOGIN',
+  payload,
+})
+
+export const INPUT = (inputType,data) => ({
+  type: 'INPUT',
+  inputType,
+  data,
+})

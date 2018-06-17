@@ -15,6 +15,7 @@ class page extends Component {
   async componentDidMount(){
     if(localStorage.getItem('MookUserToken') !== null){
       $.post('https://localhost:3000/login-token',{token: localStorage.getItem('MookUserToken')},data => {
+        if(data.err == 'ERROR')return
         this.props.login(data)
         console.log(this.props.data);
       })

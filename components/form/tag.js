@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import React, {Component} from 'react'
 import TagChild from './tagChild'
 const Container = styled.div`
     width: calc(80vw + 20px);
@@ -17,14 +18,20 @@ const TagGroup =styled.div`
   width: 100%;
   margin-top: 5px;
 `
-export default ()=>(
-  <Container>
-    <Topic><Text>Tag</Text></Topic>
-    <TagGroup>
-      <TagChild/>
-      <TagChild/>
-      <TagChild/>
-      <TagChild/>
-    </TagGroup>
-  </Container>
-)
+class tag extends Component {
+  render(){
+    return (
+      <Container>
+        <Topic><Text>Tag</Text></Topic>
+        <TagGroup>
+          <TagChild/>
+          <TagChild/>
+          <TagChild/>
+          <TagChild/>
+        </TagGroup>
+      </Container>
+    )
+  }
+}
+
+export default tag
