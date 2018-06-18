@@ -86,8 +86,8 @@ class page extends Component {
 }
 const mapStateToProps = (state)=>{
   return {
-    isOnline: state.online,
-    data: state.data
+    isOnline: state.appReducer.online,
+    data: state.appReducer.data
   }
 }
 

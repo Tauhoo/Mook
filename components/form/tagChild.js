@@ -1,4 +1,8 @@
+import React, {Component} from 'react'
 import styled from 'styled-components'
+import {connect} from 'react-redux'
+import {INPUT} from '../../redux/action/action'
+import Page from '../page'
 const Container = styled.select`
   padding: 3px;
   margin: 3px;
@@ -9,9 +13,29 @@ const Container = styled.select`
   color: #2d3436;
   outline: none;
 `
-export default ()=>(
-  <Container>
-    <option>Tag</option>
-    <option>Q&A</option>
-  </Container>
-)
+class tag extends Component {
+  componentDidMount(){
+    this.props.update({text: 'none', index: this.props.index})
+  }
+  input = (e) => {
+    console.log(this.props);
+    this.props.update({text: e.target.value, index: this.props.index})
+  }
+  render(){
+    return (
+      <Container onChange={this.input}>
+        <option>none</option>
+        <option>มุกถามตอบ</option>
+        <option>มุกจีบสาว</option>
+        <option>มุกเล่าเรื่อง</option>
+        <option>18+</option>
+      </Container>
+    )
+  }
+}
+
+const mapStateToProps = state => state.formReducer
+const mapDispatchToProps = dispatch => ({
+  update: taglist => dispatch(INPUT('TAG',taglist))
+})
+export default Page(connect(mapStateToProps, mapDispatchToProps)(tag))

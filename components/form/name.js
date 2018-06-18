@@ -1,6 +1,8 @@
 import React, {Component} from 'react'
 import styled from 'styled-components'
 import {connect} from 'react-redux'
+import {INPUT} from '../../redux/action/action'
+import Page from '../page'
 
 const Container = styled.div`
   margin-top: 20px;
@@ -21,13 +23,20 @@ const Input = styled.input`
 `
 
 class name extends Component {
- render(){
+  input = (e) => {
+    console.log(this.props);
+    this.props.update({text: e.target.value})
+  }
+  render(){
    return (
      <Container>
-       <Input placeholder='ชื่อมุข' />
+       <Input placeholder='ชื่อมุข' onChange={this.input}/>
      </Container>
    )
  }
 }
-
-export default name
+const mapStateToProps = state => state.formReducer
+const mapDispatchToProps = dispatch => ({
+  update: data => dispatch(INPUT('NAME',data))
+})
+export default Page(connect(mapStateToProps, mapDispatchToProps)(name))

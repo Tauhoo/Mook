@@ -18,10 +18,11 @@ class page extends Component {
       $.post('https://localhost:3000/login-token',{token: localStorage.getItem('MookUserToken')},data => {
         if(data.err == 'ERROR')return
         this.props.login(data)
-        console.log(this.props.data);
       })
-      return
     }
+
+    if(this.props.state)return
+
     var url = new URL(window.location.href);
     var code = url.searchParams.get("code");
     if(code === null) return;
@@ -65,8 +66,8 @@ class page extends Component {
 }
 const mapStateToProps = state => {
   return {
-    state : state.online,
-    data: state.data,
+    state : state.appReducer.online,
+    data: state.appReducer.data,
   }
 }
 

@@ -1,2 +1,2 @@
 const jwt = require('jsonwebtoken')
-module.exports = (payload) => jwt.sign(payload, process.env.CLIENT_SECRET)
+module.exports = (payload) => jwt.sign(payload, process.env.SECRET_TOKEN)

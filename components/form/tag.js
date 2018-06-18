@@ -24,10 +24,10 @@ class tag extends Component {
       <Container>
         <Topic><Text>Tag</Text></Topic>
         <TagGroup>
-          <TagChild/>
-          <TagChild/>
-          <TagChild/>
-          <TagChild/>
+          <TagChild index={0}/>
+          <TagChild index={1}/>
+          <TagChild index={2}/>
+          <TagChild index={3}/>
         </TagGroup>
       </Container>
     )

@@ -60,8 +60,8 @@ class page extends Component {
 }
 const mapStateToProps = state => {
   return {
-    state : state.online,
-    data: state.data,
+    state : state.appReducer.online,
+    data: state.appReducer.data,
   }
 }
 
