@@ -23,8 +23,10 @@ const Input = styled.input`
 `
 
 class name extends Component {
+  componentDidMount(){
+    this.props.update({text: ''})
+  }
   input = (e) => {
-    console.log(this.props);
     this.props.update({text: e.target.value})
   }
   render(){
