@@ -18,7 +18,6 @@ class tag extends Component {
     this.props.update({text: 'none', index: this.props.index})
   }
   input = (e) => {
-    console.log(this.props);
     this.props.update({text: e.target.value, index: this.props.index})
   }
   render(){

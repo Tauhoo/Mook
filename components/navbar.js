@@ -65,7 +65,7 @@ class page extends Component {
     return (
       <Container>
         <Topic>
-          <span><Link href={'/'}>Mook</Link></span>
+          <span><Link href={'/'}><a>Mook</a></Link></span>
         </Topic>
         <Picture url={this.props.isOnline ? this.props.data.picture.data.url : ""} display={this.props.isOnline}/>
         <Menu display={this.props.isOnline}>
