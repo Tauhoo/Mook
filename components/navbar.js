@@ -8,6 +8,7 @@ const Container = styled.div`
   top: 0px;
   left: 0px;
   background-color: #f1c40f;
+  z-index: 1000;
 `
 const Menu = styled.div`
   display: ${(props) => props.display ? 'inline-block' : 'none'};

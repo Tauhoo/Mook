@@ -28,6 +28,9 @@ const Container = styled.div`
   transform: translateX(-50%);
 `
 class text extends Component{
+  componentDidMount(){
+    this.props.update({text: ''})
+  }
   input = (e) => {
     this.props.update({text: e.target.value})
     console.log(this.props)
