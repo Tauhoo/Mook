@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import {connect} from 'react-redux'
 import {INPUT} from '../../redux/action/action'
 import Page from '../page'
+import $ from 'jquery'
 const Container = styled.div`
   margin-top: 10px;
   width: 100vw;
@@ -20,7 +21,12 @@ const Button = styled.button`
   background-color: #1abc9c;
 `
 class page extends Component{
-  
+  addMook = (data) => {
+    $.post('https://localhost:3000/add-mook',{mook: data},(data)=>{
+      console.log(data);
+    })
+  }
+
   mistake = (err) => {
     switch(err){
       case 'NAME BLANK':
@@ -34,21 +40,18 @@ class page extends Component{
         break;
     }
   }
+
   submit = () => {
-    const data = {...this.props}
+    const data = {...this.props, token: localStorage.getItem('MookUserToken')}
     delete data.dispatch
+    console.log(data);
+    if(data.name === '') return this.mistake('NAME BLANK')
 
-    if(data.name === ''){
-      this.mistake('NAME BLANK')
-    }
+    if(data.tag.find(i => i !== 'none') ===  undefined) return this.mistake('TAG ALL NONE')
 
-    if(data.tag.find(i => i !== 'none') ===  undefined){
-      this.mistake('TAG ALL NONE')
-    }
+    if(data.text === '') return this.mistake('TEXT BLANK')
 
-    if(data.text === ''){
-      this.mistake('TEXT BLANK')
-    }
+    this.addMook(data)
 
   }
 
@@ -60,5 +63,6 @@ class page extends Component{
     )
   }
 }
+
 const mapStateToProps = state => state.formReducer
 export default Page(connect(mapStateToProps)(page))
