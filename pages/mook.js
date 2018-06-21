@@ -5,9 +5,37 @@ import Navbar from '../components/navbar'
 import Topic from '../components/mook/topic'
 import MookField from '../components/mook/mookField'
 import Review from '../components/mook/review'
+import Comment from '../components/mook/comments.js'
 import Page from '../components/page.js'
 import { connect } from 'react-redux'
+import TokenLogin from '../api/TokenLogin'
+import { LOGIN } from '../redux/action/action'
+import $ from 'jquery'
 class page extends Component {
+  constructor(props){
+    super(props)
+    this.state = {
+      name: '',
+      tag: [],
+      text: '',
+    }
+  }
+  componentDidMount(){
+    TokenLogin(this)
+    var url = new URL(window.location.href);
+    const name = url.searchParams.get('name');
+    if(name === null) window.location = "https://localhost:3000/"
+    const id = url.searchParams.get('id')
+    $.post('https://localhost:3000/get-mook',{name,_id:id},(res)=>{
+      console.log(res);
+      this.setState({
+        name: res.name,
+        tag: res.tag,
+        text: res.text,
+      })
+      console.log(this.state.text[3]=='\n');
+    })
+  }
   render(){
     return(
       <div>
@@ -33,12 +61,25 @@ class page extends Component {
         </style>
         <body>
           <Navbar/>
-          <Topic/>
-          <MookField/>
+          <Topic name={this.state.name}/>
+          <MookField text={this.state.text}/>
           <Review/>
+          <Comment/>
         </body>
       </div>
     )
   }
 }
-export default Page(connect(state=>state)(page));
+const mapStateToProps = state => {
+  return {
+    profile: state.appReducer,
+    mook: state.formReducer,
+  }
+}
+
+const mapDispatchToProps = dispatch => {
+  return {
+    login : (payload) => dispatch(LOGIN(payload)),
+  }
+}
+export default Page(connect(mapStateToProps, mapDispatchToProps)(page));

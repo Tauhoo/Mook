@@ -18,7 +18,7 @@ mongodb.prototype.insert = function (col, data) {
     con.db.db('mook').collection(col).insertOne(data, function(err, res) {
       if (err) throw err;
       console.log("1 document inserted");
-      return resolve({db: this.db})
+      return resolve({db: this.db, data: res})
     }.bind(con));
   }.bind(this))
 }

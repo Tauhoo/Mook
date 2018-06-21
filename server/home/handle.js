@@ -58,6 +58,7 @@ async function Login(req, res) {
     resolve.db.close()
   })
 }
+
 async function TokenLogin(req,res) {
   const verifyToken = require('../verifyToken.js');
   const tokenData = verifyToken(req.body.token)
@@ -66,8 +67,8 @@ async function TokenLogin(req,res) {
     return
   }
   const data = await this.db.find('user',{id: tokenData.id}).then(function (resolve) {
-    return resolve.result
     resolve.db.close()
+    return resolve.result
   });
   res.send({
     	id : data.id,

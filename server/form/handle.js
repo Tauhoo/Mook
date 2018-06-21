@@ -2,13 +2,14 @@ async function InsertMook(req,res) {
   const mook = {...req.body.mook}
   const verifyToken = require('../verifyToken');
   const user = verifyToken(mook.token)
-  if(user.status === 'ERROR') return res.send('faild')
+  if(user.status === 'ERROR') return res.send({status: 'faild'})
   delete mook.token
   mook.userId = user.id
-  await this.db.insert('mook', mook).then((resolve)=>{
+  const data = await this.db.insert('mook', mook).then((resolve)=>{
     resolve.db.close()
+    return resolve.data
   })
-  res.send('success')
+  res.send({ status: 'success', ...data.ops[0] })
 }
 
 module.exports = {InsertMook}

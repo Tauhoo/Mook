@@ -53,10 +53,10 @@ const Picture = styled.div`
 class page extends Component {
   constructor(props){
     super(props)
-    this.logout = this.logout.bind(this)
   }
-
-  logout(){
+  componentDidMount(){
+  }
+  logout = () => {
     localStorage.removeItem('MookUserToken')
     this.props.logout()
     this.setState(nullProfile)

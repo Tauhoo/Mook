@@ -13,20 +13,10 @@ const Text = styled.span`
   font-family: 'Kanit';
   word-wrap: break-word;
   color: #2d3436;
+  white-space: pre-line;
 `
-export default ()=>(
+export default (props)=>(
   <Container>
-    <Text>
-    iiiiiiiiiiYYYYYYYYYY<br/>
-    YYYYYYYYYYYYYYYYYiii<br/>
-    iii<br/>
-    iiiiiiiiiiiiiii<br/>
-    iiiiiiiiiii<br/>
-    iiiiiiiiiiiiiiii<br/>
-    iiiiiiwwwwwwwwwwwww<br/>
-    wwwwwww<br/>
-    wwwwwwwwww<br/>
-    wwwwwwwwwwwwwwwwwwwwiiiiii
-    </Text>
+    <Text>{props.text}</Text>
   </Container>
 )

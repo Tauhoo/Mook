@@ -23,7 +23,7 @@ const Button = styled.button`
 class page extends Component{
   addMook = (data) => {
     $.post('https://localhost:3000/add-mook',{mook: data},(data)=>{
-      console.log(data);
+      window.location = "https://localhost:3000/mook?name="+data.name+'&id='+data._id
     })
   }
 

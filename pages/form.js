@@ -10,19 +10,11 @@ import Submit from '../components/form/submit'
 import Page from '../components/page.js'
 import { connect } from 'react-redux'
 import { LOGIN } from '../redux/action/action'
-import $ from 'jquery'
+import TokenLogin from '../api/TokenLogin'
+
 class page extends Component {
-  async componentDidMount(){
-    if(localStorage.getItem('MookUserToken') !== null){
-      $.post('https://localhost:3000/login-token',{token: localStorage.getItem('MookUserToken')},data => {
-        console.log(data);
-        if(data.status === 'ERROR') return
-        this.props.login(data)
-        console.log(this.props.data);
-      })
-    }else{
-      window.location = "https://localhost:3000/"
-    }
+  componentDidMount(){
+    TokenLogin(this)
   }
   render(){
     return(

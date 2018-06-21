@@ -9,8 +9,8 @@ const Text =styled.span`
   font-family: 'Kanit';
   color: #2d3436;
 `
-export default ()=>(
+export default (props)=>(
   <Container>
-    <Text>EiEiEis</Text>
+    <Text>{props.name}</Text>
   </Container>
 )

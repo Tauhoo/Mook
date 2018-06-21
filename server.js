@@ -18,6 +18,7 @@ var certOptions = {
 
 const homeHandle = require('./server/home/handle')
 const formHandle = require('./server/form/handle')
+const mookHandle = require('./server/mook/handle')
 app.prepare().then(() => {
   const server = express()
   server.use( bodyParser.json() );       // to support JSON-encoded bodies
@@ -31,6 +32,7 @@ app.prepare().then(() => {
   server.post('/login',homeHandle.Login.bind({db}))
   server.post('/login-token',homeHandle.TokenLogin.bind({db}))
   server.post('/add-mook',formHandle.InsertMook.bind({db}))
+  server.post('/get-mook',mookHandle.findMook.bind({db}))
   server.get('*', (req, res) => { handle(req, res) })
   https.createServer(certOptions, server).listen(3000)
 })
