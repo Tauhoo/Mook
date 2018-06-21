@@ -56,23 +56,42 @@ export default class extends Component{
   constructor(props){
     super(props)
     this.state = {
-      inputType: 'SELECT'
+      inputType: 'SELECT',
+      searchKeyWord: ''
     }
   }
-  change = ()=>{
+  change = () =>{
     if(this.state.inputType === 'SELECT'){
       this.setState({inputType: 'SEARCH'})
     }else{
       this.setState({inputType: 'SELECT'})
     }
   }
+  changeCategory = (e) =>{
+    console.log(e.target.value);
+  }
+  typeSearch = (e) =>{
+    this.setState({searchKeyWord: e.target.value})
+  }
+  searchInput = (e) =>{
+    if (!e) e = window.event;
+    var keyCode = e.keyCode || e.which;
+    if (keyCode == '13'){
+      console.log(this.state.searchKeyWord);
+      return false;
+    }
+  }
   render(){
     return(
       <Container>
         <InputContainer>
-          <Input type={this.state.inputType}>
-            <CategoryInput>
-              <option>Q&A</option>
+          <Input type={this.state.inputType} onKeyPress={this.searchInput} onChange={this.typeSearch}>
+            <CategoryInput onChange={this.changeCategory}>
+              <option>none</option>
+              <option>มุกถามตอบ</option>
+              <option>มุกจีบสาว</option>
+              <option>มุกเล่าเรื่อง</option>
+              <option>18+</option>
             </CategoryInput>
             <SearchInput/>
           </Input>

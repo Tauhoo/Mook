@@ -1,37 +1,32 @@
+import React, {Component} from 'react'
 import styled from 'styled-components'
+
 const Container = styled.div`
-  margin-top: 30px;
-  margin-left: calc(10vw - 10px);
+  transform: translateX(-50%);
+  margin-left: 50%;
+  margin-top: 20px;
+  width: 1100px;
 `
-const Like = styled.div`
-  display: inline-block;
-`
-const Share = styled.div`
-  display: inline-block;
-  float: right;
-`
-const LikeNumber = styled.span`
-  font-family: 'Kanit';
-  font-size: 1.5rem;
-  display: inline-block;
-  color: #2d3436;
-`
-const LikeIcon = styled.div`
-  height: 100%;
-  display: inline-block;
-  margin-left: 6px;
-  color: #2d3436;
-`
-export default ()=>(
-    <Container>
-      <Like>
-        <LikeNumber>10000</LikeNumber>
-        <LikeIcon>
-          <span style={{position: 'relative', top: '15px', transform: 'translateY(-50%)'}} className="material-icons">
-            thumb_up
-          </span>
-        </LikeIcon>
-      </Like>
-      <Share/>
-    </Container>
-)
+
+class page extends Component {
+  componentDidMount(){
+    (function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id;
+      js.src = 'https://connect.facebook.net/th_TH/sdk.js#xfbml=1&version=v3.0&appId=2106226559621691&autoLogAppEvents=1';
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'))
+  }
+  render(){
+    return(
+      <Container>
+        <div id="fb-root"></div>
+        <div class="fb-like" data-href="https://developers.facebook.com/docs/plugins/" data-layout="standard" data-action="like" data-size="small" data-show-faces="true" data-share="true"></div>
+        <div className="fb-comments" data-href="https://developers.facebook.com/docs/plugins/comments#configurator" data-width="1100" data-numposts="5"></div>
+      </Container>
+    )
+  }
+}
+
+export default page

@@ -5,7 +5,6 @@ import Navbar from '../components/navbar'
 import Topic from '../components/mook/topic'
 import MookField from '../components/mook/mookField'
 import Review from '../components/mook/review'
-import Comment from '../components/mook/comments.js'
 import Page from '../components/page.js'
 import { connect } from 'react-redux'
 import TokenLogin from '../api/TokenLogin'
@@ -35,6 +34,7 @@ class page extends Component {
       })
       console.log(this.state.text[3]=='\n');
     })
+
   }
   render(){
     return(
@@ -64,7 +64,6 @@ class page extends Component {
           <Topic name={this.state.name}/>
           <MookField text={this.state.text}/>
           <Review/>
-          <Comment/>
         </body>
       </div>
     )
