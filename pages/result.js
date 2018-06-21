@@ -1,3 +1,4 @@
+import React, {Component} from 'react'
 import Head from 'next/head'
 import styled from 'styled-components'
 import Top from '../components/result/top'
@@ -6,7 +7,23 @@ import Result from '../components/result/result'
 import Bottom from '../components/result/bottom'
 import Page from '../components/page.js'
 import { connect } from 'react-redux'
+import TokenLogin from '../api/TokenLogin'
+import {LOGIN} from '../redux/action/action'
+import $ from 'jquery'
 class page extends Component {
+  componentDidMount(){
+    TokenLogin(this)
+
+    var url = new URL(window.location.href);
+    const keyword = url.searchParams.get('keyword');
+    if(keyword === null) window.location = "https://localhost:3000/"
+    const type = url.searchParams.get('type');
+    console.log(type);
+    $.post('https://localhost:3000/search-mook',{keyword,type},(res)=>{
+      console.log(res);
+    })
+
+  }
   render(){
     return(
       <div>
@@ -40,4 +57,21 @@ class page extends Component {
     )
   }
 }
-export default Page(connect(state=>state)(page));
+const mapStateToProps = state => {
+  return {
+    state : state.appReducer.online,
+    data: state.appReducer.data,
+  }
+}
+
+const mapDispatchToProps = dispatch => {
+  return {
+    login : (payload) => dispatch(LOGIN(payload)),
+  }
+}
+
+
+export default Page(connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(page));

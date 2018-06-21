@@ -34,6 +34,17 @@ mongodb.prototype.find = function (col, query) {
   }.bind(this))
 }
 
+mongodb.prototype.finds = function (col, query) {
+  return new Promise(async function (resolve, reject) {
+    var con = await this.connect().then(resolve => resolve)
+    con.db.db('mook').collection(col).find(query).toArray(function(err, result) {
+      if (err) throw err;
+      console.log("find several element!!!!");
+      return resolve({db:this.db, result: result})
+    }.bind(con));
+  }.bind(this))
+}
+
 mongodb.prototype.update = function (col, query, newValue) {
   return new Promise(async function (resolve, reject) {
     var con = await this.connect().then(resolve => resolve)

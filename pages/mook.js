@@ -32,7 +32,6 @@ class page extends Component {
         tag: res.tag,
         text: res.text,
       })
-      console.log(this.state.text[3]=='\n');
     })
 
   }

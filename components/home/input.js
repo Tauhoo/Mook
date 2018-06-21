@@ -68,7 +68,7 @@ export default class extends Component{
     }
   }
   changeCategory = (e) =>{
-    console.log(e.target.value);
+    window.location = "https://localhost:3000/result?keyword="+e.target.value+"&type=TAG"
   }
   typeSearch = (e) =>{
     this.setState({searchKeyWord: e.target.value})
@@ -77,7 +77,7 @@ export default class extends Component{
     if (!e) e = window.event;
     var keyCode = e.keyCode || e.which;
     if (keyCode == '13'){
-      console.log(this.state.searchKeyWord);
+      window.location = "https://localhost:3000/result?keyword="+this.state.searchKeyWord+"&type=NAME"
       return false;
     }
   }
