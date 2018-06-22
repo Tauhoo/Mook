@@ -26,7 +26,6 @@ class page extends Component {
     if(name === null) window.location = "https://localhost:3000/"
     const id = url.searchParams.get('id')
     $.post('https://localhost:3000/get-mook',{name,_id:id},(res)=>{
-      console.log(res);
       this.setState({
         name: res.name,
         tag: res.tag,

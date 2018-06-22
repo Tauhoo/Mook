@@ -17,8 +17,8 @@ const Text = styled.div`
   font-family: 'Kanit';
   color: #2d3436;
 `
-export default ()=>(
+export default (props)=>(
   <Container>
-    <Topic><Text>"Q&A"</Text></Topic>
+    <Topic><Text>{'"'+props.keyword+'"'}</Text></Topic>
   </Container>
 )

@@ -6,7 +6,7 @@ async function searchMook(req,res) {
   }else{
     query.tag = {$all: [data.keyword]}
   }
-  const mooks = await this.db.finds('mook',{name: 'ice'}).then((resolve)=>{
+  const mooks = await this.db.finds('mook',query).then((resolve)=>{
     resolve.db.close()
     return resolve.result
   })

@@ -11,18 +11,22 @@ import TokenLogin from '../api/TokenLogin'
 import {LOGIN} from '../redux/action/action'
 import $ from 'jquery'
 class page extends Component {
+  constructor(props){
+    super(props)
+    this.state = {
+      result: []
+    }
+  }
   componentDidMount(){
     TokenLogin(this)
 
     var url = new URL(window.location.href);
     const keyword = url.searchParams.get('keyword');
     if(keyword === null) window.location = "https://localhost:3000/"
-    const type = url.searchParams.get('type');
-    console.log(type);
+    const type = url.searchParams.get('type')
     $.post('https://localhost:3000/search-mook',{keyword,type},(res)=>{
-      console.log(res);
+      this.setState({result: res, keyword})
     })
-
   }
   render(){
     return(
@@ -49,8 +53,8 @@ class page extends Component {
         </style>
         <body>
           <Navbar/>
-          <Top/>
-          <Result/>
+          <Top keyword={this.state.keyword}/>
+          <Result result={this.state.result}/>
           <Bottom/>
         </body>
       </div>

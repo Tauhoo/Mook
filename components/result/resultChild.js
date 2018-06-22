@@ -1,3 +1,4 @@
+import React, {Component} from 'react'
 import styled from 'styled-components'
 
 const Container = styled.div`
@@ -77,49 +78,29 @@ const Tag = styled.span`
   padding: 0px 10px 3px 10px;
   margin: 0px 5px 5px 0px;
 `
-export default ()=>(
-  <Container>
-    <Name><span>Name</span></Name>
-    <ReviewContainer>
-      <Like>
-        <LinkeNumber>10000</LinkeNumber>
-        <LikeIcon>
-          <span
-            style={{
-              position: 'relative',
-              top: '46%',
-              transform: 'translateY(-50%)',
-            }}
-            className="material-icons">
-            thumb_up
-          </span>
-        </LikeIcon>
-      </Like>
-      <Comment>
-        <CommentNumber>1800</CommentNumber>
-        <CommentIcon>
-          <span
-            style={{
-              position: 'relative',
-              top: '46%',
-              transform: 'translateY(-50%)',
-            }}
-            className="material-icons">
-            comment
-          </span>
-        </CommentIcon>
-      </Comment>
-    </ReviewContainer>
-    <Category>
-      <TopicCategory>Category</TopicCategory>
-      <TagGroup>
-        <Tag>Q&A</Tag>
-        <Tag>Romantic</Tag>
-        <Tag>Lewd</Tag>
-        <Tag>Lewd</Tag>
-        <Tag>Lewd</Tag>
-        <Tag>Lewd</Tag>
-      </TagGroup>
-    </Category>
-  </Container>
-)
+class result extends Component{
+  goto = () =>{
+    window.location = "https://localhost:3000/mook?name="+this.props.name+'&id='+this.props._id
+  }
+  render(){
+    var tag = []
+    for( var i of this.props.tag )
+      if(i !== 'none') tag.push(<Tag>{i}</Tag>)
+
+    return (
+      <Container onClick={this.goto}>
+        <Name><span>{this.props.name}</span></Name>
+        <ReviewContainer>
+        </ReviewContainer>
+        <Category>
+          <TopicCategory>Category</TopicCategory>
+          <TagGroup>
+            {tag}
+          </TagGroup>
+        </Category>
+      </Container>
+    )
+  }
+}
+
+export default result
