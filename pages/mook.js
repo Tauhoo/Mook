@@ -9,6 +9,7 @@ import Page from '../components/page.js'
 import { connect } from 'react-redux'
 import TokenLogin from '../api/TokenLogin'
 import { LOGIN } from '../redux/action/action'
+import DeleteButton from '../components/mook/deleteButton'
 import $ from 'jquery'
 class page extends Component {
   constructor(props){
@@ -25,14 +26,24 @@ class page extends Component {
     const name = url.searchParams.get('name');
     if(name === null) window.location = "https://localhost:3000/"
     const id = url.searchParams.get('id')
+    const checkForHexRegExp = new RegExp("^[0-9a-fA-F]{24}$");
+    if(!checkForHexRegExp.test(id)){
+      window.location = "https://localhost:3000/"
+      return
+    }
     $.post('https://localhost:3000/get-mook',{name,_id:id},(res)=>{
+      if(res ===''){
+        window.location = "https://localhost:3000/"
+        return
+      }
       this.setState({
         name: res.name,
         tag: res.tag,
         text: res.text,
+        autorId: res.userId,
+        id: res._id,
       })
     })
-
   }
   render(){
     return(
@@ -61,6 +72,7 @@ class page extends Component {
           <Navbar/>
           <Topic name={this.state.name}/>
           <MookField text={this.state.text}/>
+          <DeleteButton isMyMook={this.props.profile.data ? this.props.profile.data.id === this.state.autorId : false} mookId={this.state.id}/>
           <Review/>
         </body>
       </div>

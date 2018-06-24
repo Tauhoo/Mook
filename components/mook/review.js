@@ -4,7 +4,7 @@ import styled from 'styled-components'
 const Container = styled.div`
   transform: translateX(-50%);
   margin-left: 50%;
-  margin-top: 20px;
+  margin-top: 10px;
   width: 1100px;
 `
 

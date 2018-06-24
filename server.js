@@ -34,6 +34,7 @@ app.prepare().then(() => {
   server.post('/login-token',homeHandle.TokenLogin.bind({db}))
   server.post('/add-mook',formHandle.InsertMook.bind({db}))
   server.post('/get-mook',mookHandle.findMook.bind({db}))
+  server.post('/remove-mook',mookHandle.removeMook.bind({db}))
   server.post('/search-mook',resultHandle.searchMook.bind({db}))
   server.get('*', (req, res) => { handle(req, res) })
   https.createServer(certOptions, server).listen(3000)

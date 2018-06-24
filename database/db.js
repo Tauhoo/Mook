@@ -27,7 +27,7 @@ mongodb.prototype.find = function (col, query) {
   return new Promise(async function (resolve, reject) {
     var con = await this.connect().then(resolve => resolve)
     con.db.db('mook').collection(col).findOne(query, function(err, result) {
-      if (err) throw err;
+      if (err) throw 'Error';
       console.log("find!!!!");
       return resolve({db:this.db, result: result})
     }.bind(con));
@@ -52,6 +52,17 @@ mongodb.prototype.update = function (col, query, newValue) {
       if (err) throw err;
       console.log("find!!!!");
       return resolve({db:this.db, res: res})
+    }.bind(con))
+  }.bind(this))
+}
+
+mongodb.prototype.remove = function (col, query) {
+  return new Promise(async function(resolve, reject) {
+    var con = await this.connect().then(resolve => resolve)
+    con.db.db('mook').collection(col).deleteOne(query,function (err, res) {
+      if (err) throw err;
+      console.log("remove");
+      return resolve({db:this.db})
     }.bind(con))
   }.bind(this))
 }

@@ -16,6 +16,7 @@ const Text = styled.div`
   font-size: 5rem;
   font-family: 'Kanit';
   color: #2d3436;
+  white-space: pre-line;
 `
 export default (props)=>(
   <Container>
