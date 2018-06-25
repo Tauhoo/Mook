@@ -10,6 +10,7 @@ import { connect } from 'react-redux'
 import TokenLogin from '../api/TokenLogin'
 import { LOGIN } from '../redux/action/action'
 import DeleteButton from '../components/mook/deleteButton'
+import Autor from '../components/mook/autor'
 import $ from 'jquery'
 class page extends Component {
   constructor(props){
@@ -43,6 +44,11 @@ class page extends Component {
         autorId: res.userId,
         id: res._id,
       })
+      $.post('https://localhost:3000/get-user',{id: res.userId},(res)=>{
+        this.setState({
+          autor: {name: res.name, picture: res.picture}
+        })
+      })
     })
   }
   render(){
@@ -72,6 +78,7 @@ class page extends Component {
           <Navbar/>
           <Topic name={this.state.name}/>
           <MookField text={this.state.text}/>
+          <Autor {...this.state.autor}/>
           <DeleteButton isMyMook={this.props.profile.data ? this.props.profile.data.id === this.state.autorId : false} mookId={this.state.id}/>
           <Review/>
         </body>

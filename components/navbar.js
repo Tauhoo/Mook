@@ -32,6 +32,7 @@ const MenuButton = styled.button`
   color: #2d3436;
   border: none;
   background-color: #f1c40f;
+  outline: none;
 `
 const Text = styled.span`
   text-align: center;
@@ -50,6 +51,10 @@ const Picture = styled.div`
   display: ${(props) => props.display ? 'inline-block' : 'none'};
   float: right;
 `
+const A = styled.a`
+  text-decoration: none;
+  color: #2d3436;
+`
 class page extends Component {
   constructor(props){
     super(props)
@@ -66,11 +71,11 @@ class page extends Component {
     return (
       <Container>
         <Topic>
-          <span><Link href={'/'}><a>Mook</a></Link></span>
+          <span><Link href={'/'}><A>Mook</A></Link></span>
         </Topic>
         <Picture url={this.props.isOnline ? this.props.data.picture.data.url : ""} display={this.props.isOnline}/>
         <Menu display={this.props.isOnline}>
-          <MenuButton><Link href={'/form'}><a>Create</a></Link></MenuButton>
+          <MenuButton><Link href={'/form'}><A>Create</A></Link></MenuButton>
           <MenuButton onClick={this.logout}>Logout</MenuButton>
           <Text>{this.props.isOnline ? this.props.data.name : ""}</Text>
         </Menu>

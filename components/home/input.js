@@ -93,7 +93,7 @@ export default class extends Component{
               <option>มุกเล่าเรื่อง</option>
               <option>18+</option>
             </CategoryInput>
-            <SearchInput/>
+            <SearchInput placeholder="ใส่ชื่อมุก"/>
           </Input>
         </InputContainer>
         <ButtonContainer>

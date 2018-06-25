@@ -22,4 +22,13 @@ const removeMook = async function(req,res){
   res.send(data)
 }
 
-module.exports = {findMook, removeMook}
+const searchUser = async function (req,res) {
+  const query = {id: req.body.id}
+  const data = await this.db.find('user', query).then((resolve)=>{
+    resolve.db.close()
+    return resolve.result
+  })
+  res.send(data)
+}
+
+module.exports = {findMook, removeMook, searchUser}

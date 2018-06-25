@@ -29,7 +29,7 @@ class page extends Component {
   remove = () =>{
     if(!this.props.isMyMook) return
     $.post('https://localhost:3000/remove-mook',{_id:this.props.mookId},(res)=>{
-      console.log(res);
+      window.location = "https://localhost:3000/"
     })
   }
 

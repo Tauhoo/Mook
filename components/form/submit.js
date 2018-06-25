@@ -64,5 +64,5 @@ class page extends Component{
   }
 }
 
-const mapStateToProps = state => state.formReducer
+const mapStateToProps = state => ({...state.formReducer,...state.appReducer})
 export default Page(connect(mapStateToProps)(page))
